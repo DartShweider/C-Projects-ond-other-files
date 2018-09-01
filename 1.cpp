@@ -56,7 +56,7 @@ int main()
         {
             if (abs(a) > conditional_zero)
             {
-                std::cout<< "Корень_1: "<< -b/a << "Корень_2: "<< 0 << std::endl;
+                std::cout<< "Корень_1: "<< -b/a << "  "<< "Корень_2: "<< 0 << std::endl;
             } else 
             {
                 std::cout << " Действительных корней нет" << std::endl;
