@@ -1,3 +1,3 @@
-# C-Projects-ond-other-files
+# C++ Projects-ond-other-files
 For experiments
 бла-бла-бла
