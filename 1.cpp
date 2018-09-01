@@ -16,11 +16,14 @@ int main()
         
         float d = pow(b, 2) - 4*a*c;
         std::cout <<"Дискриминант: " << d << std::endl;
-        if (d > 0) {
+        if (d > 0.00001) 
+        {
             std::cout<< "Корень_1: "<< (-b - sqrt(d))/(2*a)<< "  " << "Корень_2: " << (-b + sqrt(d))/(2*a) << std::endl;
-        } else if (d == 0) {
+        } else if (abs(d) <= 0.00001) 
+        {
             std::cout<< "Корень: "<< -b/2 << std::endl;
-        } else {
+        } else if (d < -0.00001)
+        {
             std::cout<< "Действительных корней нет" << std::endl;
         }
         return 0;
