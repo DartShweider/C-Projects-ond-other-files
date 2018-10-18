@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #ifndef LIST_H_
 #define LIST_H_
 #include <string>
@@ -21,16 +21,25 @@ template <class Type>
 struct List
 {
     
-    Node<Type>* head;
+    /*private:
+        
+        ~List()
+        {
+            empty();
+        }
+    */    
+    public:
+    
+        Node<Type>* head;
 
-    int capacity = 0;
-    void push_front(Type value);
-    void push_back(Type value);
-    void print_all();
-    void empty();
-    void delete_elem(int index);
-    void print_elem(int index);
-    void find_elem(Type value);
+        int capacity = 0;
+        void push_front(Type value);
+        void push_back(Type value);
+        void print_all();
+        void empty();
+        void delete_elem(int index);
+        void print_elem(int index);
+        void find_elem(Type value);
     
 };    
 
@@ -104,13 +113,15 @@ void List<Type>::empty()
 
             
             delete head;
+            head = nullptr;
             head = tmp_head;
 
             tmp_head = head->next;
             
         }
+        head = nullptr;
         capacity = 0;
-        std::cout << "cap = " << capacity << std::endl;
+
     
     }
     
@@ -201,7 +212,3 @@ void List<Type>::find_elem(Type value)
 }
 
 #endif
-
-
-
-
