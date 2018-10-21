@@ -1,12 +1,12 @@
- #pragma once
+#pragma once
 #ifndef PATIENTS_H_
 #define PATIENTS_H_
 #include <string>
 #include "List.h"
+#include <vector>
 
 
-
-struct Patient     
+struct Patient
 {
     
     std::string name = " ";
@@ -27,6 +27,13 @@ struct DataBase
     int capacity = 1;
     int numberOfPatients = 0;
     List<Patient> patients;
+    void addPatient(std::string name, std::string surname);
+    void deletePatient(std::string name, std::string surname);
+    int findPatient(std::string name, std::string surname);
+    void emptyBase();
+    void readDataBase(std::string filename);
+    void saveDataBase(std::string filename);
+    void printPatients();
     
     
 };

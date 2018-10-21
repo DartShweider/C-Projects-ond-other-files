@@ -1,4 +1,4 @@
- #pragma once
+#pragma once
 #ifndef LIST_H_
 #define LIST_H_
 #include <string>
@@ -21,17 +21,15 @@ template <class Type>
 struct List
 {
     
-    /*private:
-        
+
         ~List()
         {
             empty();
-        }
-    */    
-    public:
-    
-        Node<Type>* head;
 
+        }
+        
+        
+        Node<Type>* head;
         int capacity = 0;
         void push_front(Type value);
         void push_back(Type value);
@@ -195,20 +193,22 @@ void List<Type>::print_elem(int index)
     }
     
     
-template <class Type>
-void List<Type>::find_elem(Type value)
+/*template <class Type>
+int List<Type>::find_elem(Type value)
 {
     Node<Type>* current = head;
+    int index;
         for (int i =0; i < capacity; i++)
         {
 
             if (current->value == value)
             {
-                std::cout << "[" << i << "]" << "\n"; 
+                index = i;
             }
             current = current->next;
             
         }
+    return i;
 }
-
+*/
 #endif

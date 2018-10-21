@@ -1,15 +1,15 @@
- #include <iostream>
+#include <iostream>
 #include <stdio.h>
 #include <math.h>
 #include <string>
-#include <fstream> // работа с файлами
-#include <iomanip> // манипуляторы ввода/вывода
+#include <fstream> 
+#include <iomanip>
 #include <cstring>
-#include <vector>           // std::(vector)
-#include <sstream>          // std::(istringstream)
-#include <algorithm>        // std::(copy)
+#include <vector> 
+#include <sstream>
+#include <algorithm> 
 
-#include "MainProcess.h"
+#include "Application.h"
 
 
 int main()
