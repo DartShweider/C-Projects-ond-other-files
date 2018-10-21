@@ -11,7 +11,6 @@ struct dataBaseArray
 {
   
     std::vector<DataBase> DataStorage;
-    void roadDataBase(std::string filename);
 /*    void showNamesOfDBs();
     int dataBaseSearch(std::string NameOfDB);
     
@@ -33,41 +32,7 @@ void dataBaseArray::addDataBase(std::string NameOfDB)
     
 }
 
-void dataBaseArray::roadDataBase(std::string filename)
-{
-    
-    DataBase database;
-    std::ifstream DATABASE(filename);
 
-    int i = 0; 
-    database.nameOfDB = filename;
-    
-    while(DATABASE)
-    {
-        
-        std::string str;
-        std::getline(DATABASE, str);
-        
-        if (str != "") // Это непонятная магия, без которой прога не рабоатет.
-        {
-            
-        std::vector<std::string> patientData;
-        Patient patient;
-        patientData = split(str, ' ');
-        patient.name = patientData[0];
-        patient.surname = patientData[1];
-        database.patients.push_back(patient);
-            
-        i++;
-            
-        }
-        
-    }
-    
-    database.numberOfPatients = i;
-    DataStorage.push_back(database);
-    
-}
 /////////----------------------/////////
 ////////-----------------------/////////
 

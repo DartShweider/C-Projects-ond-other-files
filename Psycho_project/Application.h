@@ -90,7 +90,7 @@ void MainProgram::saveDataBase()
                     
 }
 
-*/
+
 void MainProgram::readDataBase()
 {
     
@@ -98,12 +98,12 @@ void MainProgram::readDataBase()
         Interface.readDataBase(1);
         std::cin>> NameOfDB;
         std::cout<<"\n";
-        dataStorage.roadDataBase(NameOfDB);
+        dataStorage.readDataBase(NameOfDB);
         Interface.readDataBase(2);
     
 }
 
-/*
+
 void MainProgram::getDBNames()
 {
 
@@ -157,14 +157,14 @@ void MainProgram::startTheProgram()
                     saveDataBase();
                     continue;
                     
-                }*/
+                }
                 case 4:
                 {
                     readDataBase();
                     continue;
                     
                 }
-                /*
+                
                 case 5:
                 {
                     getDBNames();
