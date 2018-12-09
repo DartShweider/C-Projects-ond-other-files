@@ -6,20 +6,18 @@
 #include <string>
 #include <fstream> 
 #include <iomanip> 
-#include <cstring>
-#include <vector>           
-#include <sstream>          
-#include <algorithm>    
-#include "fstream.h"
+#include <cstring>   
 #include <list>
 
+#include "storage.h"
+#include "fstream.h"
+#include "HashFunc2.h"
 
 int main()
 {
-    Storage stor_1;
+    Storage<std::string> stor_1(400);
     readDataBase("lib", &stor_1);
     stor_1.print();
-    stor_1.remove("zzzzzzzzzzzzzzzzzzzzzzzzz");
     saveDataBase("lib", &stor_1);
     return 0;
 }

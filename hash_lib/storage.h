@@ -1,37 +1,61 @@
 #pragma once
-
 #include <string>
 #include <cstdlib>
 #include <list>
-#include "book.h"
-
+#include <iostream>
+#include <iterator>
 #include "HashFunc2.h"
 
-
+template <typename Type>
 class Storage
 {
+    
 public:
-    int cell_count = 300;
-    std::list<Book>* storage = new std::list<Book> [300];
-    void add(std::string data);
-    void remove(std::string data);
-    std::string find(std::string data);
-    void print();
+    Storage (int number);
+    ~Storage ();
+    void add(Type data);
+    void remove(Type data);
+    Type find(Type data);
+    void print(); 
+    int cell_count;
+    std::list<Type>** storage; 
+private:
+    
+    
     
 };
 
 
-void Storage::print()
+template <typename Type>
+Storage<Type>::Storage (int number)
 {
-    std::list<Book>::iterator iter_1;
+    cell_count = number;
+    storage = new std::list<Type>*[number];
+}
+
+
+template <typename Type>
+Storage<Type>::~Storage()
+{
+    for (int i = 0; i < cell_count; i++)
+    {
+        storage[i]->clear();
+    }
+    delete[]storage;
+}
+
+
+template <typename Type>
+void Storage<Type>::print()
+{
     for ( int i = 0; i < cell_count; i++)
     {
-        if (storage[i].empty() == 0)
+        if (storage[i]->empty() == 0)
         {
-            std::cout << "[" << i << "]  " << "|" << storage[i].size() << "|  ";
-            for (iter_1 = storage[i].begin(); iter_1!= storage[i].end(); iter_1++)
+            std::cout << "[" << i << "]  " << "|" << storage[i]->size() << "|  ";
+            for (auto it : *storage[i])
             {
-                std::cout << iter_1->data << ",  ";
+                std::cout << it << ",  ";
             }
             std::cout << std::endl;
         }
@@ -40,50 +64,44 @@ void Storage::print()
 
 
 
-
-void Storage::add(std::string data)
+template <typename Type>
+void Storage<Type>::add(Type data)
 {
     
     int index = abs((int)(comp_hash(data) % cell_count));
-    Book new_book;
-    new_book.data = data;
-    storage[index].push_back(new_book); 
+    storage[index]->push_back(data); 
     
 }
 
-
-void Storage::remove(std::string data)
+template <typename Type>
+void Storage<Type>::remove(Type data)
 {
     
     int index = abs((int)(comp_hash(data) % cell_count));
-    std::list<Book>::iterator iter_1;
-    for (iter_1 = storage[index].begin() ;iter_1 != storage[index].end(); iter_1++ )
+    auto it = std::find(storage[index]->begin(), storage[index]->end(), data);
+    if (it != storage[index]->end())
     {
-        if (data == iter_1->data)
-        {
-            storage[index].erase(iter_1);
-            break;
-        }
-        
+        storage[index]->erase(it);
+        std::cout << "Removed" << std::endl;
     }
-    
-    
-}
-
-
-std::string Storage::find(std::string data)
-{
-    int index = abs((int)(comp_hash(data) % cell_count));
-    std::list<Book>::iterator iter_1;
-    for (iter_1 = storage[index].begin() ;iter_1 != storage[index].end(); iter_1++ )
+    else
     {
-        if (data == iter_1->data)
-        {
-            std::cout << "True" << std::endl;
-            return data;
-        }
+        std::cout << "Data not found" << std::endl;
     }
 }
 
-
-
+template <typename Type>
+Type Storage<Type>::find(Type data)
+{
+    int index = abs((int)(comp_hash(data) % cell_count));
+    auto it = std::find(storage[index]->begin(), storage[index]->end(), data);
+    if (it != storage[index]->end())
+    {
+        std::cout << "Data found" << std::endl;
+        return data;
+    }
+    else
+    {
+        std::cout << "Data not found" << std::endl;
+    }
+} 

@@ -2,40 +2,32 @@
 #include <string>
 #include <fstream>
 #include "storage.h"
+#include <iterator>
 
-
-
-void readDataBase(std::string filename, Storage* hashTable)
+template<typename Type>
+void readDataBase(std::string filename, Storage<Type>* hashTable)
 {
     std::ifstream DATABASE(filename);
-    while(DATABASE)
+    while(!DATABASE.eof())
     {
         
         std::string str;
         std::getline(DATABASE, str);
-        
-        if (str != "") // Это непонятная магия, без которой прога не рабоатет.
-        {
-            hashTable->add(str);
-        }
+        hashTable->add(str);
     }
 }
 
 
-
-void saveDataBase(std::string filename, Storage* hashTable)
+template<typename Type>
+void saveDataBase(std::string filename, Storage<Type>* hashTable)
 {
     std::ofstream DATABASE(filename);
-    std::list<Book>::iterator iter_1;
     for (int i = 0; i < hashTable->cell_count; i++ )
     {
-        for (iter_1 = hashTable->storage[i].begin() ;iter_1 != hashTable->storage[i].end(); iter_1++ )
+        for (auto it : *hashTable->storage[i])
         {
-            DATABASE << iter_1->data << std::endl;
+            DATABASE << it << std::endl;
         
         }
     }
 }
-
-
-
