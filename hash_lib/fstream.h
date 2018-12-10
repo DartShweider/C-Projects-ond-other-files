@@ -24,7 +24,7 @@ void saveDataBase(std::string filename, Storage<Type>* hashTable)
     std::ofstream DATABASE(filename);
     for (int i = 0; i < hashTable->cell_count; i++ )
     {
-        for (auto it : *hashTable->storage[i])
+        for (auto it : hashTable->storage[i])
         {
             DATABASE << it << std::endl;
         
