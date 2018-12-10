@@ -18,7 +18,7 @@ public:
     Type find(Type data);
     void print(); 
     int cell_count;
-    std::list<Type>** storage; 
+    std::list<Type>* storage; 
 private:
     
     
@@ -30,7 +30,7 @@ template <typename Type>
 Storage<Type>::Storage (int number)
 {
     cell_count = number;
-    storage = new std::list<Type>*[number];
+    storage = new std::list<Type>[number];
 }
 
 
@@ -39,7 +39,7 @@ Storage<Type>::~Storage()
 {
     for (int i = 0; i < cell_count; i++)
     {
-        storage[i]->clear();
+        storage[i].clear();
     }
     delete[]storage;
 }
@@ -50,10 +50,10 @@ void Storage<Type>::print()
 {
     for ( int i = 0; i < cell_count; i++)
     {
-        if (storage[i]->empty() == 0)
+        if (storage[i].empty() == 0)
         {
-            std::cout << "[" << i << "]  " << "|" << storage[i]->size() << "|  ";
-            for (auto it : *storage[i])
+            std::cout << "[" << i << "]  " << "|" << storage[i].size() << "|  ";
+            for (auto it : storage[i])
             {
                 std::cout << it << ",  ";
             }
@@ -69,7 +69,7 @@ void Storage<Type>::add(Type data)
 {
     
     int index = abs((int)(comp_hash(data) % cell_count));
-    storage[index]->push_back(data); 
+    storage[index].push_back(data); 
     
 }
 
@@ -78,10 +78,10 @@ void Storage<Type>::remove(Type data)
 {
     
     int index = abs((int)(comp_hash(data) % cell_count));
-    auto it = std::find(storage[index]->begin(), storage[index]->end(), data);
-    if (it != storage[index]->end())
+    auto it = std::find(storage[index].begin(), storage[index].end(), data);
+    if (it != storage[index].end())
     {
-        storage[index]->erase(it);
+        storage[index].erase(it);
         std::cout << "Removed" << std::endl;
     }
     else
@@ -94,8 +94,8 @@ template <typename Type>
 Type Storage<Type>::find(Type data)
 {
     int index = abs((int)(comp_hash(data) % cell_count));
-    auto it = std::find(storage[index]->begin(), storage[index]->end(), data);
-    if (it != storage[index]->end())
+    auto it = std::find(storage[index].begin(), storage[index].end(), data);
+    if (it != storage[index].end())
     {
         std::cout << "Data found" << std::endl;
         return data;
