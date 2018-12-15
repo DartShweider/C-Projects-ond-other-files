@@ -1,9 +1,14 @@
 #pragma once
+#include <stdlib.h>
+#include <iostream>
+#include <stdio.h>
+#include <cstdlib>
+#include <math.h>
 #include <string>
-#include <cmath>
-#include <sstream>
-
-
+#include <fstream> 
+#include <iomanip> 
+#include <cstring>   
+#include <list>
 
 template<typename Type>
 int comp_hash(Type data)
