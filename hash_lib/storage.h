@@ -4,6 +4,7 @@
 #include <list>
 #include <iostream>
 #include <iterator>
+#include <algorithm>
 #include "HashFunc2.h"
 
 template <typename Type>
@@ -105,3 +106,5 @@ Type Storage<Type>::find(Type data)
         std::cout << "Data not found" << std::endl;
     }
 } 
+
+
