@@ -42,7 +42,10 @@ void Storage<std::string>::add(std::string data)
 {
     
     int index = abs((int)(comp_hash(data) % cell_count));
-    storage[index].push_back(data); 
+    if (std::find(storage[index].begin(), storage[index].end(), data) == storage[index].end())
+    {
+        storage[index].push_back(data); 
+    } 
     
 }
 
